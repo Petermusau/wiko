@@ -1,0 +1,25 @@
+{% extends 'girl/base.html' %}
+{% block title %}{% if object %} {{ object.name}} {% else %}AddMember{% endif %}{% endblock %}
+{% block content %}
+{% load crispy_forms_tags%}
+
+
+
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="card card-body">
+                <h3 class="text-capitalize">{% if object %} Update {{object.name}} {% else %} add member {% endif %}</h3>
+                <hr>
+                <form method="post" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    {{form|crispy}}
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-info">{% if object %}Update{% else %}Submit{%endif%}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
